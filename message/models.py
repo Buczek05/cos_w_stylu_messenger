@@ -17,3 +17,6 @@ class Message(models.Model):
 
     def get_absolute_url(self):
         return reverse("message:view_pk", kwargs={'pk': self.to_user.pk})
+
+    def __str__(self):
+        return f'From: {self.from_user} to: {self.to_user}'

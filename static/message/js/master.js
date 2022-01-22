@@ -87,11 +87,12 @@ function add_row(newRow, pk, l, r){
 function checkPreviousMessage(){
     url = 'http://192.168.0.179:8000/add_previous_js/' + $('#user_pk').html() + '/' + $('.mess_pk').eq(0).html()
     $.get(url).then(function (html) {
-        if($(html).find('.message').length < 30){
+        if($(html).find('.message').length === 0){
             $('#previous').text('')
         }
     })
 }
+
 function addPrevious(){
     var table = document.getElementById('message_table')
     scl_height = document.body.scrollHeight
