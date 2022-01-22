@@ -39,3 +39,6 @@
 tr, table{
   border-style: none;
 }
+.user_name_link{
+  color: rgb(13, 110, 253);
+}

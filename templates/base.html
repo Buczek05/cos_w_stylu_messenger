@@ -46,9 +46,11 @@
               <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
                 {% for user in users %}
                 
-                <li class="dropdown-item">
-                  <a href="{% url 'message:view_pk' pk=user.pk %}">{{user.username}}</a>
-                </li>
+                <a href="{% url 'message:view_pk' pk=user.pk %}">
+                  <li class="dropdown-item user_name_link">
+                    {{user.username}}
+                  </li>
+                </a>
                 
                 {% endfor %}
               </ul>
