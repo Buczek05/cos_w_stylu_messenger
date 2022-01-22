@@ -16,6 +16,6 @@ class Message_form(forms.ModelForm):
                 'rows': '1',
                 'onkeydown': 'pressed(event)',
                 'placeholder': 'Aa',
-                'autocomplete':'off1'
+                'autocomplete':'off'
             }),
         }
