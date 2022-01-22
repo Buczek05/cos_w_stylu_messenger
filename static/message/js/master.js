@@ -1,3 +1,6 @@
+getUrl = window.location
+var base_url = getUrl.protocol + "//" + getUrl.host
+
 function pressed(e) {
     if (e.which === 13 && !e.shiftKey) {
         send()
@@ -14,7 +17,7 @@ document.onload = checkPreviousMessage()
 
 function send() {
     event.preventDefault();
-    url = 'http://192.168.0.179:8000/send_js/' + $('#user_pk').html()
+    url = base_url + '/send_js/' + $('#user_pk').html()
     $.ajax({
         url: url,
         data: $('#post_message').serialize(),
@@ -30,7 +33,7 @@ async function delay(time) {
   }
 
 function new_message(){
-    url = 'http://192.168.0.179:8000/check_js/' + $('#user_pk').html()
+    url = base_url + '/check_js/' + $('#user_pk').html()
     $.get(url).then(function (html) {
         if($(html).find('.message').length > 1){
             for(const x of Array($(html).find('.message').length).keys()){
@@ -85,7 +88,7 @@ function add_row(newRow, pk, l, r){
 }
 
 function checkPreviousMessage(){
-    url = 'http://192.168.0.179:8000/add_previous_js/' + $('#user_pk').html() + '/' + $('.mess_pk').eq(0).html()
+    url = base_url + '/add_previous_js/' + $('#user_pk').html() + '/' + $('.mess_pk').eq(0).html()
     $.get(url).then(function (html) {
         if($(html).find('.message').length === 0){
             $('#previous').text('')
@@ -96,7 +99,7 @@ function checkPreviousMessage(){
 function addPrevious(){
     var table = document.getElementById('message_table')
     scl_height = document.body.scrollHeight
-    url = 'http://192.168.0.179:8000/add_previous_js/' + $('#user_pk').html() + '/' + $('.mess_pk').eq(0).html()
+    url = base_url + '/add_previous_js/' + $('#user_pk').html() + '/' + $('.mess_pk').eq(0).html()
     $.get(url).then(function (html) {
         if($(html).find('.message').length > 1){
             for(const x of Array($(html).find('.message').length).keys()){
