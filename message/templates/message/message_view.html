@@ -1,28 +1,47 @@
 {% extends 'base.html' %}
-{% load django_bootstrap5 %}
+{% load static %}
+{% load django_bootstrap5 %} 
 {% block content %}
 
-<div class="container">
-    <table>
-        <h1>From</h1>
-        {% for mess in message_from %}
-        
-            <tr>
-                <td>{{mess.from_user}}  </td>
-                <td>{{mess.text}}</td>
-            </tr>
-        
-        {% endfor %}
-        <h1>To</h1>
-        {% for mess in message_to %}
-        
-            <tr>
-                <td>{{mess.from_user}}  </td>
-                <td>{{mess.text}}</td>
-            </tr>
-        
-        {% endfor %}
+<div class="container-md" onload="to_down()">
+  <div class="message_div">
+    <h3 id='previous'><button class='btn btn-primary' onclick='addPrevious()'>load_previous</button></h3>
+    <h3>{{to_user.name}}</h3>
+    <table class="table table-borderless message_table" id='message_table'>
+      {% if message %} 
+        {% for mess in message %} 
+          <tr>
+            <td class='visually-hidden mess_pk'>{{mess.pk}}</td>
+            {% if mess.from_user == user%}
+          
+              <td class="col-sm-6 to_left"></td>
+              <td class="col-sm-6 to_right"><span class='text_border_r'>{{mess.text}}</span></td>
+          
+            {% else %}
+          
+              <td class="col-sm-6 to_left"><span class='text_border_l'>{{mess.text}}</span></td>
+              <td class="col-sm-6 to_right"></td>
+              
+            {% endif %} 
+          </tr>
+        {% endfor %} 
+      {% endif %}
+      <span id='user_pk' class='visually-hidden'>{{to_user.pk}}</span>
     </table>
+  </div>
+  <div class='container-md fixed-bottom dark_color'>
+    <form method="post" id='post_message'>
+        <div class='row g-2'>
+          {% csrf_token %}
+          <div class="col-9 col-md-11 col-sm-10">
+            {% bootstrap_form form%}
+          </div>
+          <div class='col-3 col-md-1 col-sm-2'>
+            <input type="button" value="Send" class="btn btn-primary send_button" onclick = 'send()'>
+          </div>
+      </div>
+      </form>
+  </div>
 </div>
-
+<script src="{% static 'message/js/master.js' %}"></script>
 {% endblock content %}

@@ -1,0 +1,41 @@
+.to_right {
+  text-align: right;
+  background-color: black;
+  color: white;
+}
+.to_left {
+  text-align: left;
+  background-color: black;
+  color: white;
+}
+.message_div {
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+.send_button{
+  min-width: 100%;
+  text-align: center;
+}
+
+.dark_color{
+  background-color: black;
+}
+.text_border_r{
+  border: blue 4px solid;
+  background-color: blue;
+  border-radius: 15px;
+  padding: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.text_border_l{
+  border: grey 4px solid;
+  background-color: grey;
+  border-radius: 15px;
+  padding: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+tr, table{
+  border-style: none;
+}

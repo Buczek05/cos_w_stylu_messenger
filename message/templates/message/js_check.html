@@ -1,0 +1,21 @@
+{% if message %}
+    <table>
+    
+        {% for mess in message %}
+            <tr class='message'>
+                <td class='visually-hidden' id='pk'>{{mess.pk}}</td>
+                {% if mess.from_user == user%}
+                
+                <td id='l'></td>
+                <td id='r'>{{mess.text}}</td>
+        
+        {% else %}
+        
+            <td id='l'>{{mess.text}}</td>
+            <td id='r'></td>
+        
+        {% endif %}
+            </tr>   
+        {% endfor %}
+    </table>
+{% endif %}

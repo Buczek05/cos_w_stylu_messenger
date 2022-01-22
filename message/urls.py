@@ -1,9 +1,13 @@
 from django.urls import path
-from . import views
+from message import views
 
 app_name = 'message'
 
 urlpatterns = [
-    path('create', views.Message_Create.as_view(), name='create'),
-    path('view/<int:pk>', views.Message_user_view.as_view(), name='view'),
+    path('', views.Message_user_view.as_view(), name='view'),
+    path('index', views.index.as_view(), name='index'),
+    path('<int:pk>', views.Message_user_view.as_view(), name='view_pk'),
+    path('send_js/<int:pk>', views.Create_message_js.as_view(), name='send_js'),
+    path('check_js/<int:pk>', views.check_message_js.as_view(), name='check_js'),
+    path('add_previous_js/<int:pk>/<int:last>', views.previous_add_js.as_view(), name='add_previous'),
 ]
