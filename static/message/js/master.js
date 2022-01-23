@@ -38,19 +38,16 @@ async function pushNotification(){
 
     if (head && body && id) {
 
-        const res = await fetch('/send_push', {
+        const res = await fetch(base_url + '/send_push', {
             method: 'POST',
             body: JSON.stringify({head, body, id}),
             headers: {
                 'content-type': 'application/json'
             }
         });
-        // if (res.status === 200) {
-        //     input.value = '';
-        //     textarea.value = '';
-        // } else {
-        //     errorMsg.innerText = res.message;
-        // }
+        if (res.status !== 200) {
+            alert(res.message);
+        }
     }
     else {
         let error;

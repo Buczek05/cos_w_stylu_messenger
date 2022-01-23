@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
+STATIC_ROOT = 'static_web'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -129,9 +130,6 @@ LOGIN_REDIRECT_URL = 'message:view'
 LOGOUT_REDIRECT_URL = 'accounts:login'
 
 
-AUTH_PASSWORD_VALIDATORS = [
-    ...
-]
 
 WEBPUSH_SETTINGS = {
    "VAPID_PUBLIC_KEY": "BKUyPjZr1EC3s-k60I7-6XvX5i4eV3zuZiZGobuMtMyEc0bmO9ZJ6Rzn3UUknxOE24YBG1ZPP-srYzcbotcF44I",

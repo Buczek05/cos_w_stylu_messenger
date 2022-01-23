@@ -1,5 +1,7 @@
 const pushForm = document.getElementById('send-push__form');
 const errorMsg = document.querySelector('.error');
+getUrl = window.location
+var base_url = getUrl.protocol + "//" + getUrl.host
 
 pushForm.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -17,13 +19,14 @@ pushForm.addEventListener('submit', async function (e) {
         button.innerText = 'Sending...';
         button.disabled = true;
 
-        const res = await fetch('/send_push', {
+        const res = await fetch(base_url + '/send_push', {
             method: 'POST',
             body: JSON.stringify({head, body, id}),
             headers: {
                 'content-type': 'application/json'
             }
         });
+        
         if (res.status === 200) {
             button.innerText = 'Send another 😃!';
             button.disabled = false;

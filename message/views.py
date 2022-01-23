@@ -7,7 +7,6 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now, timedelta, datetime
-
 User = get_user_model()
 # Create your views here.
 
