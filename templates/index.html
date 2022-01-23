@@ -1,6 +1,28 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block headcontent %}
+
+<meta name="vapid-key" content="{{ vapid_key }}">
+    {% if user.id %}
+        <meta name="user_id" content="{{ user.id }}">
+    {% endif %}
+
+{% endblock headcontent %}
+
 {% block content %}
 
-<h1>index</h1>
+    <h1>index</h1>
 
+    <div>
+        <form id="send-push__form">
+            <h3 class="header">Send a push notification</h3>
+            <p class="error"></p>
+            <input type="text" name="head" placeholder="Header: Your favorite airline 😍">
+            <textarea name="body" id="" cols="30" rows="10" placeholder="Body: Your flight has been cancelled 😱😱😱"></textarea>
+            <button>Send Me</button>
+        </form>
+    </div>
+    <script src="{% static '/js/registerSw.js' %}"></script>
+    <script src="{% static '/js/site.js' %}"></script>
 {% endblock content %}

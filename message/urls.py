@@ -5,7 +5,6 @@ app_name = 'message'
 
 urlpatterns = [
     path('', views.Message_user_view.as_view(), name='view'),
-    path('index', views.index.as_view(), name='index'),
     path('<int:pk>', views.Message_user_view.as_view(), name='view_pk'),
     path('send_js/<int:pk>', views.Create_message_js.as_view(), name='send_js'),
     path('check_js/<int:pk>', views.check_message_js.as_view(), name='check_js'),

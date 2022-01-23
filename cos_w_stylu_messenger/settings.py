@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_bootstrap5',
+    'webpush',
     'accounts',
     'message',
 ]
@@ -125,4 +126,15 @@ STATICFILES_DIRS = [Path.joinpath(BASE_DIR, 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'message:view'
-LOGOUT_REDIRECT_URL = 'message:index'
+LOGOUT_REDIRECT_URL = 'accounts:login'
+
+
+AUTH_PASSWORD_VALIDATORS = [
+    ...
+]
+
+WEBPUSH_SETTINGS = {
+   "VAPID_PUBLIC_KEY": "BKUyPjZr1EC3s-k60I7-6XvX5i4eV3zuZiZGobuMtMyEc0bmO9ZJ6Rzn3UUknxOE24YBG1ZPP-srYzcbotcF44I",
+   "VAPID_PRIVATE_KEY": "7wsg5n5a6_fee4xsps5kouOmm7g0Gr0xs4Mft-PlEis",
+   "VAPID_ADMIN_EMAIL": "kacperbuko@wp.pl"
+}

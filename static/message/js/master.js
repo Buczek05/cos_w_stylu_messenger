@@ -16,7 +16,6 @@ document.onload = to_down()
 document.onload = checkPreviousMessage()
 
 function send() {
-    event.preventDefault();
     url = base_url + '/send_js/' + $('#user_pk').html()
     $.ajax({
         url: url,
@@ -24,8 +23,46 @@ function send() {
         type: 'POST',
         processData: false,
     });
+    pushNotification()
     $('.text_message').val('')
     setTimeout(new_message, 50)
+}
+async function pushNotification(){
+    const input = $('#user_name');
+    const textarea = $('.text_message');
+
+    const head = input.text();
+    const body = textarea.val();
+    const meta = document.querySelector('meta[name="user_id"]');
+    const id = meta ? meta.content : null;
+
+    if (head && body && id) {
+
+        const res = await fetch('/send_push', {
+            method: 'POST',
+            body: JSON.stringify({head, body, id}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+        // if (res.status === 200) {
+        //     input.value = '';
+        //     textarea.value = '';
+        // } else {
+        //     errorMsg.innerText = res.message;
+        // }
+    }
+    else {
+        let error;
+        if (!head || !body){
+            error = 'Please ensure you complete the form 🙏🏾'
+        }
+        else if (!id){
+            error = "Are you sure you're logged in? 🤔. Make sure! 👍🏼"
+        }
+        // errorMsg.innerText = error;
+        alert(error)
+    }
 }
 
 async function delay(time) {

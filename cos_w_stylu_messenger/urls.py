@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.views.generic import TemplateView
+from .views import send_push, index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('message.urls'))
+    path('', include('message.urls')),
+    path('index', index),
+    path('send_push', send_push),
+    path('webpush/', include('webpush.urls')),
+    path('sw.js', TemplateView.as_view(template_name='sw.js', content_type='application/x-javascript')),
 ]

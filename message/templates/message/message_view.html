@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load django_bootstrap5 %} 
+
+{% block headcontent %}
+
+<meta name="vapid-key" content="{{ vapid_key }}">
+    {% if to_user.pk %}
+        <meta name="user_id" content="{{ to_user.pk }}">
+    {% endif %}
+
+{% endblock headcontent %}
+
 {% block content %}
 
 <div class="container-md" onload="to_down()">
@@ -27,6 +37,7 @@
         {% endfor %} 
       {% endif %}
       <span id='user_pk' class='visually-hidden'>{{to_user.pk}}</span>
+      <span id='user_name' class='visually-hidden'>{{user.username}}</span>
     </table>
   </div>
   <div class='container-md fixed-bottom dark_color'>
@@ -45,4 +56,5 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'message/js/master.js' %}"></script>
+{% comment %} <script src="{% static '/js/site.js' %}"></script> {% endcomment %}
 {% endblock content %}
