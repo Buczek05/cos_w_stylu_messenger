@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.utils.timezone import now, timedelta, datetime
+from django.conf import settings
+
 User = get_user_model()
 # Create your views here.
 
@@ -78,6 +80,9 @@ class Message_user_view(LoginRequiredMixin, generic.CreateView):
         context['users'] = User.objects.exclude(username=self.request.user.username)
         to_user = to_user_make(self)
         if to_user:
+            webpush_settings = getattr(settings, 'WEBPUSH_SETTINGS', {})
+            vapid_key = webpush_settings.get('VAPID_PUBLIC_KEY')
+            context['vapid_key'] = vapid_key
             message_list = models.Message.objects.filter(
                 Q(to_user=self.request.user, from_user=to_user) |
                 Q(from_user=self.request.user, to_user=to_user)
