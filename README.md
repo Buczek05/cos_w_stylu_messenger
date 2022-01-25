@@ -7,3 +7,5 @@
 <p>django-bootstrap5[21.3]</p>
 <p>django-webpush[0.3.4]</p>
 <p>six[1.16.0]</p>
+
+<a href='https://www.digitalocean.com/community/tutorials/how-to-send-web-push-notifications-from-django-applications'>I used this tutorial to add web push app</a>
